@@ -6,15 +6,23 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/03/12 04:52:47 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:07:22 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./headers/so_long.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-int	open_window(t_x_obj *window)
+int main(void)
 {
-		window->x_tab = mlx_init();
-		window->x_window = mlx_new_window(window->x_tab, 200, 200, "so_long");
-		return(0);
+	int BUFFER_SIZE = 100;
+	int fd;
+	char buffer[BUFFER_SIZE];
+	char *path;
+
+	path = "../resources/maps/first_map.ber";
+	fd = open(path, O_RDONLY);
+	read(fd, buffer, BUFFER_SIZE);
+	printf("%s", buffer);
 }
