@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 18:30:34 by feandrad         ###   ########.fr       */
+/*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
+/*   Updated: 2023/05/09 18:30:59 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../libs/get_next_line/get_next_line.h"
+# include "libft.h"
 
-int main(int argc, char** argv)
-{
-	int	fd;
-	char	*path;
-	char	*line;
+int validation (int argc, char* path, int fd);
 
-	path = argv[1];
-	fd = open(path, O_RDONLY);
-	if (validation(argc, path, fd) == -1)
-		return (-1);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		printf("%s", line);
-		line = get_next_line(fd);
-	}
-	return (0);
-}
+#endif

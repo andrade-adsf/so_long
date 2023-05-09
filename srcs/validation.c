@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 18:30:34 by feandrad         ###   ########.fr       */
+/*   Created: 2023/05/09 18:18:32 by feandrad          #+#    #+#             */
+/*   Updated: 2023/05/09 18:32:50 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 
-int main(int argc, char** argv)
+int validation (int argc, char* path, int fd)
 {
-	int	fd;
-	char	*path;
-	char	*line;
-
-	path = argv[1];
-	fd = open(path, O_RDONLY);
-	if (validation(argc, path, fd) == -1)
-		return (-1);
-	line = get_next_line(fd);
-	while (line != NULL)
+    if (argc != 2)
 	{
-		printf("%s", line);
-		line = get_next_line(fd);
+		printf("Error\nWrong number of parameters!");
+		return (-1);
 	}
-	return (0);
+	if (fd == -1)
+	{
+		printf("Error\nPath not valid!");
+		return (-1);
+	}
+	if (ft_strncmp(&path[ft_strlen(path)-4], ".ber", 5) != 0)
+	{
+		printf("Error\nExtension not valid!");
+		return (-1);
+	}
+    return (0);
 }
