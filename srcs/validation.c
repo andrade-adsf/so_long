@@ -6,13 +6,13 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:18:32 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 18:32:50 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:43:54 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#include "so_long.h"
 
-int validation (int argc, char* path, int fd)
+int input_validation (int argc, char* path, int fd)
 {
     if (argc != 2)
 	{
@@ -31,3 +31,4 @@ int validation (int argc, char* path, int fd)
 	}
     return (0);
 }
+
