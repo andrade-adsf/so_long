@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 03:08:07 by feandrad          #+#    #+#             */
-/*   Updated: 2022/12/07 18:03:29 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/09 08:29:47 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putstr_fd(char *s, int fd)
 	i = 0;
 	str_size = 0;
 	if (!s)
-		return ;
+		return (0);
 	while (s[i] != '\0')
 	{
 		str_size += ft_putchar_fd(s[i], fd);
