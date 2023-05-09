@@ -6,20 +6,24 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:18:32 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 18:43:54 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:59:20 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int input_validation (int argc, char* path, int fd)
+int input_validation (int argc, char** argv, int* fd)
 {
+    char* path;
+    
     if (argc != 2)
 	{
 		printf("Error\nWrong number of parameters!");
 		return (-1);
 	}
-	if (fd == -1)
+    path = argv[1];
+    *fd = open(path, O_RDONLY);
+	if (*fd == -1)
 	{
 		printf("Error\nPath not valid!");
 		return (-1);
