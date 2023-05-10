@@ -1,7 +1,7 @@
 NAME = so_long
 
 all:
-	gcc -Wall -Wextra -Werror -g ./libs/get_next_line/get_next_line.c ./libs/get_next_line/get_next_line_utils.c ./srcs/so_long.c ./srcs/validation.c -I ./libs/libft -I ./headers/ -I ./libs/get_next_line/ ./libs/libft/libft.a -o $(NAME)
+	gcc -Wall -Wextra -Werror -g ./libs/get_next_line/get_next_line.c ./libs/get_next_line/get_next_line_utils.c ./srcs/so_long.c ./srcs/input_validation.c -I ./libs/libft -I ./headers/ -I ./libs/get_next_line/ ./libs/libft/libft.a -o $(NAME)
 
 val: $(NAME)
 	-valgrind -q ./$(NAME)
