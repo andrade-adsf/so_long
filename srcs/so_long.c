@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 19:56:13 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:55:23 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(int argc, char** argv)
 	char	*line;
 	char	*aux;
 	char	*linear_map;
+	char	**map;
 
 	if (input_validation(argc, argv, &fd) == -1)
 		return (-1);
@@ -31,7 +32,9 @@ int main(int argc, char** argv)
 		aux = linear_map;
 		line = get_next_line(fd);
 	}
-	printf("%s", linear_map);
+	map = ft_split(linear_map, '\n');
 	free(linear_map);
+	printf("%s", map);
+	free(map);
 	return (0);
 }
