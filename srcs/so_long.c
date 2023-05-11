@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/10 19:44:22 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:40:51 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int argc, char** argv)
 
 	if (input_validation(argc, argv, &fd) == -1)
 		return (-1);
+	// inicia leitura do mapa
 	line = get_next_line(fd);
 	map_size = 0;
 	aux = ft_strdup("");
@@ -38,15 +39,20 @@ int main(int argc, char** argv)
 	}
 	map = ft_split(linear_map, '\n');
 	free(linear_map);
+	// fim leitura mapa
+	if(char_validation(map, map_size) != 0)
+		return(-1);
+	// inicio print e free map
 	i = 0;
 	while(i < map_size)
-		{
-			printf("%s", map[i]);
-			if(i < map_size - 1)
-				printf("\n");
-			free(map[i]);
-			i++;
-		}
+	{
+		printf("%s", map[i]);
+		if(i < map_size - 1)
+			printf("\n");
+		free(map[i]);
+		i++;
+	}
+	// fim print map
 	free(map);
 	return (0);
 }
