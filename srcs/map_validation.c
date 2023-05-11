@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/10 21:47:27 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:07:57 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int char_validation(char **map, int map_size)
                                 return (-1);
                             }
                     }
-                    unique_i = 0;
                 }
-                valid_i = 0;
             }
+            j++;
         }
+        i++;
     }
     return (0);
 }
