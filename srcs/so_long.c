@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/22 06:54:19 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/22 08:59:07 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int main(int argc, char** argv)
 	// fim leitura mapa
 	if(char_validation(map, map_size) != 0)
 	{
+		free(map);
 		printf("Error\nInvalid char on map!");
 		return(-1);
 	}
