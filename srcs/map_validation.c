@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/21 15:09:21 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/22 06:32:24 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int char_validation(char **map, int map_size)
     char    check_char;
     
 	i = 0;
-	j = 0;
 	count_e = 0;
 	count_p = 0;
     while(i < map_size)
     {
+        j = 0;
         while(map[i][j] != '\0')
         {
-            check_char = *ft_strnstr("01CEP", &map[i][j], 5);
-            if(check_char != '0' && check_char != '1' && check_char != 'C' && check_char != 'E' && check_char != 'P')
+            check_char = map[i][j];
+            if(ft_strchr("01CEP", check_char) == NULL)
                 return(-1);
             else
                 j++;
