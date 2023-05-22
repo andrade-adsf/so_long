@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/10 21:40:51 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/22 06:54:19 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int main(int argc, char** argv)
 	free(linear_map);
 	// fim leitura mapa
 	if(char_validation(map, map_size) != 0)
+	{
+		printf("Error\nInvalid char on map!");
 		return(-1);
+	}
 	// inicio print e free map
 	i = 0;
 	while(i < map_size)
