@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/23 06:27:50 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/23 06:53:39 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,21 @@ void    free_map(char **map, int map_size)
         i++;
     }
     free(map);
+}
+
+int len_line(map)
+{
+    int i;
+    int j;
+    int line_size;
+    
+    i = 0;
+    j = 0;
+    line_size = 0;
+    while(map[i][j] != '\0')
+    {
+        line_size++;
+        j++;
+    }
+    return(line_size);
 }
