@@ -6,9 +6,11 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/23 06:21:42 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/23 06:27:50 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "so_long.h"
 
 void    free_map(char **map, int map_size)
 {
