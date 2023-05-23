@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/23 06:21:49 by feandrad         ###   ########.fr       */
+/*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
+/*   Updated: 2023/05/23 06:21:42 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "get_next_line.h"
-# include "libft.h"
+void    free_map(char **map, int map_size)
+{
+    int i;
 
-int input_validation (int argc, char **argv, int* fd);
-int char_validation(char **map, int map_size);
-void    free_map(char **map, int map_size);
-
-#endif
+    i = 0;
+    while (i < map_size)
+    {
+        free(map[i]);
+        i++;
+    }
+    free(map);
+}

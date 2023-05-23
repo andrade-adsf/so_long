@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   input_validation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:18:32 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 18:59:20 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/23 06:22:00 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int input_validation (int argc, char** argv, int* fd)
+int input_validation (int argc, char **argv, int* fd)
 {
     char* path;
     

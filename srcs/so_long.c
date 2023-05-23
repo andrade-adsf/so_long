@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/22 08:59:07 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/23 06:24:54 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	// fim leitura mapa
 	if(char_validation(map, map_size) != 0)
 	{
-		free(map);
+		free_map(map, map_size);
 		printf("Error\nInvalid char on map!");
 		return(-1);
 	}
@@ -53,10 +53,8 @@ int main(int argc, char** argv)
 		printf("%s", map[i]);
 		if(i < map_size - 1)
 			printf("\n");
-		free(map[i]);
-		i++;
 	}
 	// fim print map
-	free(map);
+	free_map(map, map_size);
 	return (0);
 }
