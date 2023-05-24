@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 07:17:15 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/24 07:22:31 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int main(int argc, char** argv)
 		printf("%s", map[i]);
 		if(i < map_size - 1)
 			printf("\n");
+		i++;
 	}
 	// fim print map
 	free_map(map, map_size);
