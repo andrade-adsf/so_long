@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 07:22:31 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:38:41 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int argc, char** argv)
 	int	fd;
 	int	map_size;
 	int i;
+	int line_size;
 	char	*line;
 	char	*aux;
 	char	*linear_map;
@@ -40,19 +41,28 @@ int main(int argc, char** argv)
 	map = ft_split(linear_map, '\n');
 	free(linear_map);
 	// fim leitura mapa
+	// inicia validações
 	if(char_validation(map, map_size) != 0)
 	{
 		free_map(map, map_size);
 		printf("Error\nInvalid char on map!");
 		return(-1);
 	}
-	if(line_size_validation(map, map_size) != 0)
+	line_size = len_line(map);
+	if(line_size_validation(map, map_size, line_size) != 0)
 	{
 		free_map(map, map_size);
 		printf("Error\nMap is not a rectangle!");
 		return(-1);
 	}
-	// inicio print e free map
+	if(walls_validation(map, map_size, line_size) != 0)
+	{
+		free_map(map, map_size);
+		printf("Error\nNot rounded by walls!");
+		return(-1);
+	}
+	// fim validações
+	// inicio print map
 	i = 0;
 	while(i < map_size)
 	{

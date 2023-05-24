@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 07:20:04 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:36:01 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,13 @@ int char_validation(char **map, int map_size)
     return(0);
 }
 
-int line_size_validation(char **map, int map_size)
+int line_size_validation(char **map, int map_size, int line_size)
 {
     int i;
     int j;
-    int line_size;
 
     i = 0;
     j = 0;
-    line_size = len_line(map);
-    
     while(i < map_size)
     {
         while((map[i][j] != '\0') | (j < line_size))
@@ -71,4 +68,26 @@ int line_size_validation(char **map, int map_size)
             i++;
     }
     return(0);
+}
+
+int walls_validation(char **map, int map_size, int line_size)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(i < map_size)
+    {
+        if(map[i][0] != '1' || map[i][line_size - 1] != '1')
+            return (-1);
+        i++;
+    }
+    j = 0;
+    while(j < line_size)
+    {
+        if(map[0][j] != '1' || map[line_size -1][j] != '1')
+            return (-1);
+        j++;
+    }
+    return (0);
 }
