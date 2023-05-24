@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 07:09:19 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/24 07:15:56 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,6 @@ int line_size_validation(char **map, int map_size)
             return(-1);
         else
             i++;
-    }
-    return(0);
-}
-
-int whitespace_validation(char **map, int map_size)
-{
-    int line_size;
-
-    line_size = len_line(map) - 1;
-    while(map_size >= 0)
-    {
-        if((map[map_size][0] >= 9 && map[map_size][0] <= 13) | (map[map_size][0] == 32))
-            return(-1);
-        else if((map[map_size][line_size] >= 9 && map[map_size][line_size] <= 13) | (map[map_size][line_size] == 32))
-            return(-1);
-        else
-            map_size--;
     }
     return(0);
 }
