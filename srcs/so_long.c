@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:39:58 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 06:36:31 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/24 06:50:17 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int argc, char** argv)
 		printf("Error\nInvalid char on map!");
 		return(-1);
 	}
-	if(line_size_validation != 0 | whitespace_validation != 0)
+	if(line_size_validation != 0)
 	{
 		free_map(map, map_size);
 		printf("Error\nMap is not a rectangle!");
