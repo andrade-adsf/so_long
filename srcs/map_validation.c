@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 19:36:01 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:54:19 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int walls_validation(char **map, int map_size, int line_size)
     j = 0;
     while(j < line_size)
     {
-        if(map[0][j] != '1' || map[line_size -1][j] != '1')
+        if(map[0][j] != '1' || map[map_size - 1][j] != '1')
             return (-1);
         j++;
     }
