@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/24 19:54:19 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:51:27 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,15 @@ int char_validation(char **map, int map_size)
                 return(-1);
             else
                 j++;
-            if(check_char == 'E')
-            {
+            if(check_char != 'E')
                 count_e++;
-                if(count_e > 1)
-                    return(-1);
-            }
-            else if(check_char == 'P')
-            {
+            else if(check_char != 'P')
                 count_p++;
-                if(count_p > 1)
-                    return(-1);
-            }
         }
         i++;
     }
+    if(count_e != 1 || count_p != 1)
+        return(-1);
     return(0);
 }
 
@@ -90,4 +84,28 @@ int walls_validation(char **map, int map_size, int line_size)
         j++;
     }
     return (0);
+}
+
+int    get_next_path(t_map *mp, int x, int y)
+{
+    if (mp->array[y][x] != '1' && mp->array[y][x] != 'X'
+        && mp->array[y][x] != 'N')
+        return (1);
+    return (0);
+}
+
+int    check_path(t_map *map, int x, int y)
+{
+    if (map->array[y][x] == 'C' || map->array[y][x] == 'E')
+        map->coins--;
+    map->array[y][x] = 'X';
+    if (get_next_path(map, x, y - 1) && map->coins > -1)
+        check_path(map, x, y - 1);
+    if (get_next_path(map, x, y + 1) && map->coins > -1)
+        check_path(map, x, y + 1);
+    if (get_next_path(map, x - 1, y) && map->coins > -1)
+        check_path(map, x - 1, y);
+    if (get_next_path(map, x + 1, y) && map->coins > -1)
+        check_path(map, x + 1, y);
+    return (map->coins);
 }
