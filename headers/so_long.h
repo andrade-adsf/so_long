@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/25 19:58:27 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/27 03:08:03 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_map
 	int		coins;
 	int		p_x;
 	int		p_y;
+	int		map_size;
 }	t_map;
 
 typedef struct s_game

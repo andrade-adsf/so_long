@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 03:02:06 by feandrad         ###   ########.fr       */
+/*   Created: 2023/05/26 22:07:13 by feandrad          #+#    #+#             */
+/*   Updated: 2023/05/27 01:12:35 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-void    free_map(char **map, int map_size)
+void    mem_allocation(t_game game)
 {
-    int i;
-
-    i = 0;
-    while (i < map_size)
-    {
-        free(map[i]);
-        i++;
-    }
-    free(map);
-}
-
-int len_line(char **map)
-{
-    int j;
-    int line_size;
-    
-    j = 0;
-    line_size = 0;
-    while(map[0][j] != '\0')
-    {
-        line_size++;
-        j++;
-    }
-    return(line_size);
+    // game->map = ft_calloc(1, sizeof(t_map));
+    // game->data = ft_calloc(1, sizeof(t_data));
+    // game->sprites = ft_calloc(1, sizeof(t_sprites));
+    // game->data->img = ft_calloc(1, sizeof(t_img));
+    game->map->grid = ft_calloc(1, sizeof(char **));
 }

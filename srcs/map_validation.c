@@ -6,13 +6,13 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/25 18:51:27 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/27 03:08:33 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int char_validation(char **map, int map_size)
+int char_validation(t_game game)
 {
     int i;
     int j;
@@ -23,7 +23,7 @@ int char_validation(char **map, int map_size)
 	i = 0;
 	count_e = 0;
 	count_p = 0;
-    while(i < map_size)
+    while(i < game->map->map_size)
     {
         j = 0;
         while(map[i][j] != '\0')
@@ -86,15 +86,7 @@ int walls_validation(char **map, int map_size, int line_size)
     return (0);
 }
 
-int    get_next_path(t_map *mp, int x, int y)
-{
-    if (mp->array[y][x] != '1' && mp->array[y][x] != 'X'
-        && mp->array[y][x] != 'N')
-        return (1);
-    return (0);
-}
-
-int    check_path(t_map *map, int x, int y)
+int    check_path(char **map, int x, int y)
 {
     if (map->array[y][x] == 'C' || map->array[y][x] == 'E')
         map->coins--;
@@ -108,4 +100,12 @@ int    check_path(t_map *map, int x, int y)
     if (get_next_path(map, x + 1, y) && map->coins > -1)
         check_path(map, x + 1, y);
     return (map->coins);
+}
+
+void    map_validation(t_game game)
+{
+    char_validation();
+    line_size_validation();
+    walls_validation();
+    check_path();
 }

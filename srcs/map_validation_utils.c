@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   map_validation_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 03:02:06 by feandrad         ###   ########.fr       */
+/*   Created: 2023/05/27 02:11:53 by feandrad          #+#    #+#             */
+/*   Updated: 2023/05/27 03:01:26 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    free_map(char **map, int map_size)
+int    get_next_path(t_map *mp, int x, int y)
 {
-    int i;
-
-    i = 0;
-    while (i < map_size)
-    {
-        free(map[i]);
-        i++;
-    }
-    free(map);
-}
-
-int len_line(char **map)
-{
-    int j;
-    int line_size;
-    
-    j = 0;
-    line_size = 0;
-    while(map[0][j] != '\0')
-    {
-        line_size++;
-        j++;
-    }
-    return(line_size);
+    if (mp->array[y][x] != '1' && mp->array[y][x] != 'X')
+        return (1);
+    return (0);
 }
