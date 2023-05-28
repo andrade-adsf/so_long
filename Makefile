@@ -3,12 +3,13 @@ NAME = so_long
 all:
 	gcc -Wall -Wextra -Werror -g ./libs/get_next_line/get_next_line.c \
 	./libs/get_next_line/get_next_line_utils.c ./srcs/so_long.c \
-	./srcs/game_init.c \
+	./srcs/game_init.c ./srcs/open_window.c ./srcs/load_sprites.c \
+	./srcs/put_imgs.c \
 	./srcs/input_validation.c ./srcs/map_validation_utils.c \
 	./srcs/map_validation.c  ./srcs/so_long_utils.c \
 	./libs/libft/libft.a \
 	-I ./libs/libft -I ./libs/get_next_line/ -I ./headers/ \
-	-o $(NAME)
+	-o $(NAME) -lmlx -lXext -lX11
 
 val: $(NAME)
 	@printf "\n\nTeste somente com ./so_long\n"

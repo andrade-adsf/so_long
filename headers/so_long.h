@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 22:11:49 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/28 05:35:23 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,18 @@ int line_size_validation(t_game *game);
 int walls_validation(t_game *game);
 int    check_path(t_game *game);
 void    map_validation(t_game *game);
+
+// game related
 void	read_map(int fd, t_game *game);
-int get_next_path(t_game *game, int y, int x);
 int player_position(t_game *game, int count_p, int x, int y);
+void reload_map(char **argv, t_game *game);
+void    open_window(t_game *game);
+void    load_sprites(t_game *game);
+void    put_imgs(t_game *game);
 
 // utils
-void    free_map(char **map, int map_size);
+void    free_map(t_game *game);
 int len_line(char **map);
+int get_next_path(t_game *game, int y, int x);
 
 #endif

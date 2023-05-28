@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 22:31:19 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/28 00:53:27 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,22 @@ int char_validation(t_game *game)
         {
             check_char = game->map.array[i][j];
             if(ft_strchr("01CEP", check_char) == NULL)
-                exit();
+                exit(0);
             else
                 j++;
-            if(check_char != 'E')
+            if(check_char == 'E')
                 count_e++;
-            else if(check_char != 'P')
-                count_p = player_position(game, count_p, j, i);
-            else if(check_char != 'C')
+            else if(check_char == 'P')
+                count_p = player_position(game, count_p, j - 1, i);
+            else if(check_char == 'C')
                 game->map.coins++;
         }
         i++;
     }
     if(count_e != 1 || count_p != 1 || game->map.coins < 1)
-        exit();
+    {
+        exit(0);
+    }
     return(0);
 }
 
@@ -61,7 +63,7 @@ int line_size_validation(t_game *game)
         while((game->map.array[i][j] != '\0') | (j < line_size))
             j++;
         if(j != line_size)
-            exit;
+            exit(0);
         else
             i++;
     }
@@ -79,14 +81,14 @@ int walls_validation(t_game *game)
     while(i < game->map.map_size)
     {
         if(game->map.array[i][0] != '1' || game->map.array[i][line_size - 1] != '1')
-            exit();
+            exit(0);
         i++;
     }
     j = 0;
     while(j < line_size)
     {
         if(game->map.array[0][j] != '1' || game->map.array[game->map.map_size - 1][j] != '1')
-            exit();
+            exit(0);
         j++;
     }
     return (0);
@@ -97,14 +99,26 @@ int    check_path(t_game *game)
     if (game->map.array[game->map.p_y][game->map.p_x] == 'C' || game->map.array[game->map.p_y][game->map.p_x] == 'E')
         game->map.coins--;
     game->map.array[game->map.p_y][game->map.p_x] = 'X';
-    if (get_next_path(game, game->map.p_x, game->map.p_y - 1) && game->map.coins > -1)
+    if (get_next_path(game, game->map.p_y - 1, game->map.p_x) && game->map.coins > -1)
+    {
+        game->map.p_y--;
         check_path(game);
-    if (get_next_path(game, game->map.p_x, game->map.p_y + 1) && game->map.coins > -1)
+    }
+    if (get_next_path(game, game->map.p_y + 1, game->map.p_x) && game->map.coins > -1)
+    {
+        game->map.p_y++;
         check_path(game);
-    if (get_next_path(game, game->map.p_x - 1, game->map.p_y) && game->map.coins > -1)
+    }
+    if (get_next_path(game, game->map.p_y, game->map.p_x - 1) && game->map.coins > -1)
+    {
+        game->map.p_x--;
         check_path(game);
-    if (get_next_path(game, game->map.p_x + 1, game->map.p_y) && game->map.coins > -1)
+    }
+    if (get_next_path(game, game->map.p_y, game->map.p_x + 1) && game->map.coins > -1)
+    {
+        game->map.p_x++;
         check_path(game);
+    }
     return (game->map.coins);
 }
 
@@ -113,8 +127,6 @@ int    check_path(t_game *game)
 void    map_validation(t_game *game)
 {
     char_validation(game);
-    ft_putstr_fd("Map Validation: ", 1);
-	ft_putendl_fd(game->map.array[0], 1);
     line_size_validation(game);
     walls_validation(game);
     check_path(game);
