@@ -6,13 +6,13 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 03:08:33 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:31:19 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int char_validation(t_game game)
+int char_validation(t_game *game)
 {
     int i;
     int j;
@@ -23,89 +23,99 @@ int char_validation(t_game game)
 	i = 0;
 	count_e = 0;
 	count_p = 0;
-    while(i < game->map->map_size)
+    while(i < game->map.map_size)
     {
         j = 0;
-        while(map[i][j] != '\0')
+        while(game->map.array[i][j] != '\0')
         {
-            check_char = map[i][j];
+            check_char = game->map.array[i][j];
             if(ft_strchr("01CEP", check_char) == NULL)
-                return(-1);
+                exit();
             else
                 j++;
             if(check_char != 'E')
                 count_e++;
             else if(check_char != 'P')
-                count_p++;
+                count_p = player_position(game, count_p, j, i);
+            else if(check_char != 'C')
+                game->map.coins++;
         }
         i++;
     }
-    if(count_e != 1 || count_p != 1)
-        return(-1);
+    if(count_e != 1 || count_p != 1 || game->map.coins < 1)
+        exit();
     return(0);
 }
 
-int line_size_validation(char **map, int map_size, int line_size)
+int line_size_validation(t_game *game)
 {
     int i;
     int j;
+    int line_size;
 
     i = 0;
     j = 0;
-    while(i < map_size)
+    line_size = len_line(game->map.array);
+    while(i < game->map.map_size)
     {
-        while((map[i][j] != '\0') | (j < line_size))
+        while((game->map.array[i][j] != '\0') | (j < line_size))
             j++;
         if(j != line_size)
-            return(-1);
+            exit;
         else
             i++;
     }
     return(0);
 }
 
-int walls_validation(char **map, int map_size, int line_size)
+int walls_validation(t_game *game)
 {
     int i;
     int j;
+    int line_size;
 
     i = 0;
-    while(i < map_size)
+    line_size = len_line(game->map.array);
+    while(i < game->map.map_size)
     {
-        if(map[i][0] != '1' || map[i][line_size - 1] != '1')
-            return (-1);
+        if(game->map.array[i][0] != '1' || game->map.array[i][line_size - 1] != '1')
+            exit();
         i++;
     }
     j = 0;
     while(j < line_size)
     {
-        if(map[0][j] != '1' || map[map_size - 1][j] != '1')
-            return (-1);
+        if(game->map.array[0][j] != '1' || game->map.array[game->map.map_size - 1][j] != '1')
+            exit();
         j++;
     }
     return (0);
 }
 
-int    check_path(char **map, int x, int y)
+int    check_path(t_game *game)
 {
-    if (map->array[y][x] == 'C' || map->array[y][x] == 'E')
-        map->coins--;
-    map->array[y][x] = 'X';
-    if (get_next_path(map, x, y - 1) && map->coins > -1)
-        check_path(map, x, y - 1);
-    if (get_next_path(map, x, y + 1) && map->coins > -1)
-        check_path(map, x, y + 1);
-    if (get_next_path(map, x - 1, y) && map->coins > -1)
-        check_path(map, x - 1, y);
-    if (get_next_path(map, x + 1, y) && map->coins > -1)
-        check_path(map, x + 1, y);
-    return (map->coins);
+    if (game->map.array[game->map.p_y][game->map.p_x] == 'C' || game->map.array[game->map.p_y][game->map.p_x] == 'E')
+        game->map.coins--;
+    game->map.array[game->map.p_y][game->map.p_x] = 'X';
+    if (get_next_path(game, game->map.p_x, game->map.p_y - 1) && game->map.coins > -1)
+        check_path(game);
+    if (get_next_path(game, game->map.p_x, game->map.p_y + 1) && game->map.coins > -1)
+        check_path(game);
+    if (get_next_path(game, game->map.p_x - 1, game->map.p_y) && game->map.coins > -1)
+        check_path(game);
+    if (get_next_path(game, game->map.p_x + 1, game->map.p_y) && game->map.coins > -1)
+        check_path(game);
+    return (game->map.coins);
 }
 
-void    map_validation(t_game game)
+//game map coins if return != -1 exit
+
+void    map_validation(t_game *game)
 {
-    char_validation();
-    line_size_validation();
-    walls_validation();
-    check_path();
+    char_validation(game);
+    ft_putstr_fd("Map Validation: ", 1);
+	ft_putendl_fd(game->map.array[0], 1);
+    line_size_validation(game);
+    walls_validation(game);
+    check_path(game);
 }

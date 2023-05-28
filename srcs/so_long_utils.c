@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 03:02:06 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/27 21:45:33 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,9 @@ void    free_map(char **map, int map_size)
 int len_line(char **map)
 {
     int j;
-    int line_size;
     
     j = 0;
-    line_size = 0;
     while(map[0][j] != '\0')
-    {
-        line_size++;
         j++;
-    }
-    return(line_size);
+    return(j);
 }

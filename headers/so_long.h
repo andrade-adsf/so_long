@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/27 03:08:03 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:11:49 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,15 @@ typedef struct s_game
 }	t_game;
 
 // validations
-int input_validation (int argc, char **argv, int* fd);
-int char_validation(char **map, int map_size);
-int line_size_validation(char **map, int map_size, int line_size);
-int walls_validation(char **map, int map_size, int line_size);
+int input_validation (int argc, char **argv, t_game *game);
+int char_validation(t_game *game);
+int line_size_validation(t_game *game);
+int walls_validation(t_game *game);
+int    check_path(t_game *game);
+void    map_validation(t_game *game);
+void	read_map(int fd, t_game *game);
+int get_next_path(t_game *game, int y, int x);
+int player_position(t_game *game, int count_p, int x, int y);
 
 // utils
 void    free_map(char **map, int map_size);
