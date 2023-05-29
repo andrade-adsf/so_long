@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 22:25:21 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 23:31:43 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:23:57 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ int close_free(t_game *game, char *error_message, int game_start)
     free_map(game);
     if (game_start == 1)
     {
-        mlx_destroy_image(game->data.mlx, game->sprites.s_exit);
-        mlx_destroy_image(game->data.mlx, game->sprites.s_coin);
-        mlx_destroy_image(game->data.mlx, game->sprites.s_wall);
-        mlx_destroy_image(game->data.mlx, game->sprites.s_floor);
-        mlx_destroy_image(game->data.mlx, game->sprites.s_player);
+        if (game->sprites.s_exit != NULL)
+            mlx_destroy_image(game->data.mlx, game->sprites.s_exit);
+        if (game->sprites.s_coin != NULL)
+            mlx_destroy_image(game->data.mlx, game->sprites.s_coin);
+        if (game->sprites.s_wall != NULL)
+            mlx_destroy_image(game->data.mlx, game->sprites.s_wall);
+        if (game->sprites.s_floor != NULL)
+            mlx_destroy_image(game->data.mlx, game->sprites.s_floor);
+        if (game->sprites.s_player != NULL)
+            mlx_destroy_image(game->data.mlx, game->sprites.s_player);
         mlx_destroy_window(game->data.mlx, game->data.win);
         mlx_destroy_display(game->data.mlx);
         free(game->data.mlx);
