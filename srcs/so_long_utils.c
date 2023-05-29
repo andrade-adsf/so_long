@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 06:18:14 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/29 02:43:24 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 03:27:34 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	reload_map(char **argv, t_game *game)
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
-	read_map(fd, game);
+	read_map(fd, game, 0);
 	get_pos(game);
 }
 

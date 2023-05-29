@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:56:00 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/29 02:35:21 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 03:30:57 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	reload_map(argv, &game);
 	open_window(&game);
 	load_sprites(&game);
-	put_imgs(&game);
+	put_imgs(&game, 0, 0);
 	mlx_hook(game.data.win, 2, 1L << 0, pressed_key, &game);
 	mlx_hook(game.data.win, 17, 1L << 2, close_free, &game);
 	mlx_loop(game.data.mlx);

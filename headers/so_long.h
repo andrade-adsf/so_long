@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/29 03:17:24 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 04:17:07 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,16 @@
 
 # define KEY_ESC  			65307
 
-# include <stdio.h>
+# define BUFFER_SIZE 42
+
 # include <unistd.h>
 # include <fcntl.h>
-# include "get_next_line.h"
-# include "ft_printf.h"
+# include "../libs/ft_printf/ft_printf.h"
 // minilibx
 # include <mlx.h>
 // Xlib keycode - keysymbol mapping + events and masks
 # include <X11/keysym.h>
 # include <X11/X.h>
-// includes da função open()
-# include <sys/types.h>
-# include <sys/stat.h>
 
 typedef struct s_sprites
 {
@@ -82,19 +79,19 @@ typedef struct s_game
 
 // validations
 int		input_validation(int argc, char **argv, t_game *game);
-int		char_validation(t_game *game);
+int		char_validation(t_game *game, int i, int j);
 int		line_size_validation(t_game *game);
 int		walls_validation(t_game *game);
 int		check_path(t_game *game, int x, int y);
 void	map_validation(t_game *game);
 
 // game related
-void	read_map(int fd, t_game *game);
+void	read_map(int fd, t_game *game, int map_size);
 int		player_position(t_game *game, int count_p, int x, int y);
 void	reload_map(char **argv, t_game *game);
 void	open_window(t_game *game);
 void	load_sprites(t_game *game);
-void	put_imgs(t_game *game);
+void	put_imgs(t_game *game, int i, int j);
 int		pressed_key(int key, t_game *game);
 void	key_up(int key, t_game *game);
 void	key_down(int key, t_game *game);
@@ -111,5 +108,7 @@ int		close_free(t_game *game, char *error_message, int game_start);
 void	key_esc(int key, t_game *game);
 int		game_rows(t_game *game);
 void	load_map(t_game *game, char *line, char *aux);
+char	*get_next_line(int fd);
+int		read_file(char **aux_p, char **line_p, int fd);
 
 #endif

@@ -6,18 +6,14 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 05:30:02 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/29 02:39:34 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 03:30:45 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_imgs(t_game *game)
+void	put_imgs(t_game *game, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
 	while (i < game->map.map_size)
 	{
 		j = 0;

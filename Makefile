@@ -1,19 +1,45 @@
 NAME = so_long
 
+SRCS_PATH = ./srcs/
+
+SRCS_FILES = close_window.c game_init.c input_validation.c \
+			load_sprites.c map_validation_utils.c map_validation.c \
+			open_window.c pressed_key.c put_imgs.c so_long_utils.c \
+			so_long.c get_next_line.c
+
+SRCS = $(addprefix $(SRCS_PATH),$(SRCS_FILES))
+
+OBJECTS = $(SRCS:%.c=%.o)
+
+FLAGS = -Wall -Wextra -Werror 
+
+LMX_FLAGS = -lmlx -lXext -lX11
+
+INCLUDES = -I ./headers
+
 VALGRIND = valgrind --leak-check=full \
  --show-leak-kinds=all --track-origins=yes \
  --show-reachable=yes --show-possibly-lost=yes -q
 
-all:
-	gcc -Wall -Wextra -Werror -g ./libs/get_next_line/get_next_line.c \
-	./libs/get_next_line/get_next_line_utils.c ./srcs/so_long.c \
-	./srcs/game_init.c ./srcs/open_window.c ./srcs/load_sprites.c \
-	./srcs/put_imgs.c ./srcs/pressed_key.c ./srcs/close_window.c \
-	./srcs/input_validation.c ./srcs/map_validation_utils.c \
-	./srcs/map_validation.c  ./srcs/so_long_utils.c \
-	./libs/ft_printf/libftprintf.a \
-	-I ./libs/get_next_line/ -I ./libs/ft_printf -I ./headers/ \
-	-o $(NAME) -lmlx -lXext -lX11
+all: lib $(NAME)
+
+$(NAME): $(OBJECTS)
+	cc $(FLAGS) $(INCLUDES) $^ ./libs/ft_printf/libftprintf.a -o $@ $(LMX_FLAGS)
+
+%.o: %.c
+	cc $(FLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -fr $(OBJECTS)
+	make clean -C libs/ft_printf --no-print-directory
+
+fclean: clean
+	rm -fr $(NAME) ./libs/ft_printf/libftprintf.a
+
+re: fclean all
+
+lib:
+	make -C libs/ft_printf --no-print-directory
 
 val: $(NAME)
 	@printf "\n\nTeste somente com ./so_long\n"
@@ -59,4 +85,4 @@ val: $(NAME)
 	@printf "\n\nTeste correto\n"
 	$(VALGRIND) ./$(NAME) ./resources/maps/first_map.ber
 
-$(NAME): all
+.PHONY: all clean fclean re lib

@@ -6,33 +6,28 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/29 02:47:41 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 03:37:08 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	char_validation(t_game *game)
+int	char_validation(t_game *game, int i, int j)
 {
-	int		i;
-	int		j;
 	int		count_e;
 	int		count_p;
 	char	check_char;
 
-	i = 0;
 	count_e = 0;
 	count_p = 0;
-	while (i < game->map.map_size)
+	while (++i < game->map.map_size)
 	{
 		j = 0;
 		while (game->map.array[i][j] != '\0')
 		{
-			check_char = game->map.array[i][j];
+			check_char = game->map.array[i][j++];
 			if (ft_strchr("01CEP", check_char) == NULL)
 				close_free(game, "Error\nChar on map not permited!\n", 0);
-			else
-				j++;
 			if (check_char == 'E')
 				count_e++;
 			else if (check_char == 'P')
@@ -40,7 +35,6 @@ int	char_validation(t_game *game)
 			else if (check_char == 'C')
 				game->map.coins++;
 		}
-		i++;
 	}
 	if (count_e != 1 || count_p != 1 || game->map.coins < 1)
 		close_free (game, "Error\nWrong number of elements!\n", 0);
@@ -117,7 +111,7 @@ int	check_path(t_game *game, int x, int y)
 
 void	map_validation(t_game *game)
 {
-	char_validation(game);
+	char_validation(game, -1, 0);
 	line_size_validation(game);
 	walls_validation(game);
 	if (check_path(game, game->map.p_x, game->map.p_y) > -1)

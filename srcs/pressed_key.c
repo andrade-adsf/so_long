@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 16:17:15 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/29 02:34:33 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 03:32:11 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	key_up(int key, t_game *game)
 			game->map.array[game->map.p_y][game->map.p_x] = '0';
 			game->map.p_y -= 1;
 			game->map.array[game->map.p_y][game->map.p_x] = 'P';
-			put_imgs(game);
+			put_imgs(game, 0, 0);
 		}
 	}
 }
@@ -45,7 +45,7 @@ void	key_down(int key, t_game *game)
 			game->map.array[game->map.p_y][game->map.p_x] = '0';
 			game->map.p_y += 1;
 			game->map.array[game->map.p_y][game->map.p_x] = 'P';
-			put_imgs(game);
+			put_imgs(game, 0, 0);
 		}
 	}
 }
@@ -59,7 +59,7 @@ void	key_left(int key, t_game *game)
 			game->map.array[game->map.p_y][game->map.p_x] = '0';
 			game->map.p_x -= 1;
 			game->map.array[game->map.p_y][game->map.p_x] = 'P';
-			put_imgs(game);
+			put_imgs(game, 0, 0);
 		}
 	}
 }
@@ -73,7 +73,7 @@ void	key_right(int key, t_game *game)
 			game->map.array[game->map.p_y][game->map.p_x] = '0';
 			game->map.p_x += 1;
 			game->map.array[game->map.p_y][game->map.p_x] = 'P';
-			put_imgs(game);
+			put_imgs(game, 0, 0);
 		}
 	}
 }
