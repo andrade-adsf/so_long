@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 03:08:07 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/09 08:29:47 by feandrad         ###   ########.fr       */
+/*   Created: 2022/09/10 14:38:23 by feandrad          #+#    #+#             */
+/*   Updated: 2022/09/30 03:15:49 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int	i;
-	int	str_size;
+	size_t	count;
+	size_t	total_size;
 
-	i = 0;
-	str_size = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
+	total_size = 0;
+	if (size > ft_strlen(dst))
 	{
-		str_size += ft_putchar_fd(s[i], fd);
-		i++;
+		total_size = ft_strlen(dst) + ft_strlen(src);
+		while (*dst)
+		{
+			dst++;
+			size--;
+		}
+		count = 0;
+		while (count < (size - 1) && src[count])
+		{
+			dst[count] = src[count];
+			count++;
+		}
+		dst[count] = '\0';
 	}
-	return (str_size);
+	else
+	{
+		total_size = ft_strlen(src) + size;
+	}
+	return (total_size);
 }

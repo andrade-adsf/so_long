@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:56:00 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 05:45:58 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:02:21 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ int main(int argc, char **argv)
     map_validation(&game);
     free_map(&game);
     reload_map(argv, &game);
+    // ^ não deve ser substituido
+    // v sujeito a refatoração
     open_window(&game);
     load_sprites(&game);
     put_imgs(&game);
+    mlx_hook(game.data.win, 2, 1L << 0, pressed_key, &game);
+    mlx_hook(game.data.win, 17, 1L << 2, close_free, &game);
     mlx_loop(game.data.mlx);
     // game_end;
     // free_map;

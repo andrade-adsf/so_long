@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 00:53:27 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:07 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int char_validation(t_game *game)
         {
             check_char = game->map.array[i][j];
             if(ft_strchr("01CEP", check_char) == NULL)
-                exit(0);
+                close_free(game, "Error\nChar on map not permited!\n", 0);
             else
                 j++;
             if(check_char == 'E')
@@ -44,7 +44,7 @@ int char_validation(t_game *game)
     }
     if(count_e != 1 || count_p != 1 || game->map.coins < 1)
     {
-        exit(0);
+        close_free(game, "Error\nCollectibles not founded!\n", 0);;
     }
     return(0);
 }
@@ -63,7 +63,7 @@ int line_size_validation(t_game *game)
         while((game->map.array[i][j] != '\0') | (j < line_size))
             j++;
         if(j != line_size)
-            exit(0);
+            close_free(game, "Error\nGame is not a rectangle!\n", 0);
         else
             i++;
     }
@@ -81,14 +81,14 @@ int walls_validation(t_game *game)
     while(i < game->map.map_size)
     {
         if(game->map.array[i][0] != '1' || game->map.array[i][line_size - 1] != '1')
-            exit(0);
+            close_free(game, "Error\nMap not surrounded by walls!\n", 0);
         i++;
     }
     j = 0;
     while(j < line_size)
     {
         if(game->map.array[0][j] != '1' || game->map.array[game->map.map_size - 1][j] != '1')
-            exit(0);
+            close_free(game, "Error\nMap not surrounded by walls!\n", 0);
         j++;
     }
     return (0);

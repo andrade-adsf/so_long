@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation_utils.c                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 02:11:53 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 21:27:06 by feandrad         ###   ########.fr       */
+/*   Created: 2023/01/19 00:12:55 by feandrad          #+#    #+#             */
+/*   Updated: 2023/05/28 22:59:55 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int get_next_path(t_game *game, int y, int x)
-{
-    if (game->map.array[y][x] != '1' && game->map.array[y][x] != 'X')
-        return (1);
-    return (0);
-}
+# include <stdarg.h>
+# include "libft/libft.h"
 
-int player_position(t_game *game, int count_p, int x, int y)
-{
-    game->map.p_x = x;
-    game->map.p_y = y;
-    count_p++;
-    return (count_p);
-}
+int ft_printf(const char *str, ...);
+int	check_flag(char flag, va_list arg);
+
+#endif

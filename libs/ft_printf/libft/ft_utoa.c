@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:58:13 by feandrad          #+#    #+#             */
-/*   Updated: 2022/12/09 10:55:08 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/01/19 00:59:40 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ static size_t	intlen(unsigned int nb)
 	return (count);
 }
 
-char    ft_utoa(unsigned int n)
+char	*ft_utoa(unsigned int n)
 {
-    size_t  size;
-    char    *str;
+	size_t	size;
+	char	*str;
 
-    size = intlen(n);
-    str = (char *) ft_calloc(size + 1, sizeof(char));
-    size -= 1;
-    while (size > 0)
-    {
-        str[size--] = (n % 10) + '0';
-        n /= 10;
-    }
-    str[size] == n + '0';
-    return (str);
+	size = intlen(n);
+	str = (char *) ft_calloc(size + 1, sizeof(char));
+	size -= 1;
+	while (size > 0)
+	{
+		str[size--] = (n % 10) + '0';
+		n /= 10;
+	}
+	str[size] = n + '0';
+	return (str);
 }

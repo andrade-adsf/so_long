@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:18:32 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 01:14:17 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:06:35 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,13 @@ int input_validation (int argc, char **argv, t_game *game)
     char* path;
     
     if (argc != 2)
-	{
-		printf("Error\nWrong number of parameters!\n");
-		exit(0);
-	}
+		close_free(game, "Error\nWrong number of parameters!\n", 0);
     path = argv[1];
     fd = open(path, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error\nPath not valid!");
-		exit(0);
-	}
+		close_free(game, "Error\nPath not valid!\n", 0);
 	if (ft_strncmp(&path[ft_strlen(path)-4], ".ber", 5) != 0)
-	{
-		printf("Error\nExtension not valid!");
-		exit(0);
-	}
+		close_free(game, "Error\nExtension not valid!\n", 0);
 	// ler mapa e salvar na struct
 	read_map(fd, game);
     return (0);
