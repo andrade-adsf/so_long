@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:24:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 23:12:37 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:02:00 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int input_validation (int argc, char **argv, t_game *game);
 int char_validation(t_game *game);
 int line_size_validation(t_game *game);
 int walls_validation(t_game *game);
-int    check_path(t_game *game);
+int    check_path(t_game *game, int x, int y);
 void    map_validation(t_game *game);
 
 // game related
@@ -109,5 +109,6 @@ int get_next_path(t_game *game, int y, int x);
 void    get_pos(t_game *game);
 int close_free(t_game *game, char *error_message, int game_start);
 void    key_esc(int key, t_game *game);
+int	game_rows(t_game *game);
 
 #endif

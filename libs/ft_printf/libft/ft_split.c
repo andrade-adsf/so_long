@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 00:50:46 by feandrad          #+#    #+#             */
-/*   Updated: 2022/09/30 05:29:56 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 01:04:47 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ char	**ft_split(char const *s, char c)
 	size_t	size;
 	char	**tab;
 
+	if (!s)
+		return (NULL);
 	tab = (char **) ft_calloc (count_words(s, c) + 1, sizeof(char *));
-	if (!tab || !s)
+	if (!tab)
 		return (NULL);
 	i = 0;
 	size = 0;

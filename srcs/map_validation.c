@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 20:26:34 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 23:08:07 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:02:53 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int char_validation(t_game *game)
     }
     if(count_e != 1 || count_p != 1 || game->map.coins < 1)
     {
-        close_free(game, "Error\nCollectibles not founded!\n", 0);;
+        close_free(game, "Error\nWrong number of elements!\n", 0);;
     }
     return(0);
 }
@@ -56,11 +56,11 @@ int line_size_validation(t_game *game)
     int line_size;
 
     i = 0;
-    j = 0;
     line_size = len_line(game->map.array);
     while(i < game->map.map_size)
     {
-        while((game->map.array[i][j] != '\0') | (j < line_size))
+        j = 0;
+        while((game->map.array[i][j] != '\0') && (j < line_size))
             j++;
         if(j != line_size)
             close_free(game, "Error\nGame is not a rectangle!\n", 0);
@@ -94,31 +94,24 @@ int walls_validation(t_game *game)
     return (0);
 }
 
-int    check_path(t_game *game)
+int    check_path(t_game *game, int x, int y)
 {
-    if (game->map.array[game->map.p_y][game->map.p_x] == 'C' || game->map.array[game->map.p_y][game->map.p_x] == 'E')
+    char    temp;
+    
+    temp = game->map.array[y][x];
+    if (game->map.array[y][x] == 'C' || game->map.array[y][x] == 'E')
         game->map.coins--;
-    game->map.array[game->map.p_y][game->map.p_x] = 'X';
-    if (get_next_path(game, game->map.p_y - 1, game->map.p_x) && game->map.coins > -1)
-    {
-        game->map.p_y--;
-        check_path(game);
-    }
-    if (get_next_path(game, game->map.p_y + 1, game->map.p_x) && game->map.coins > -1)
-    {
-        game->map.p_y++;
-        check_path(game);
-    }
-    if (get_next_path(game, game->map.p_y, game->map.p_x - 1) && game->map.coins > -1)
-    {
-        game->map.p_x--;
-        check_path(game);
-    }
-    if (get_next_path(game, game->map.p_y, game->map.p_x + 1) && game->map.coins > -1)
-    {
-        game->map.p_x++;
-        check_path(game);
-    }
+    game->map.array[y][x] = 'X';
+    if (temp == 'E')
+        return (game->map.coins);
+    if (get_next_path(game, y - 1, x) && game->map.coins > -1)
+        check_path(game, x, y - 1);
+    if (get_next_path(game, y + 1, x) && game->map.coins > -1)
+        check_path(game, x, y + 1);
+    if (get_next_path(game, y, x - 1) && game->map.coins > -1)
+        check_path(game, x - 1, y);
+    if (get_next_path(game, y, x + 1) && game->map.coins > -1)
+        check_path(game, x + 1, y);
     return (game->map.coins);
 }
 
@@ -129,5 +122,6 @@ void    map_validation(t_game *game)
     char_validation(game);
     line_size_validation(game);
     walls_validation(game);
-    check_path(game);
+    if (check_path(game, game->map.p_x, game->map.p_y) > -1)
+        close_free(game, "Error\nMap not valid!", 0);
 }

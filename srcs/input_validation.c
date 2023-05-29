@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:18:32 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 23:06:35 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 01:10:07 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	read_map(int fd, t_game *game)
 
 	line = get_next_line(fd);
 	map_size = 0;
-	aux = ft_strdup("");
+	if (line != NULL)
+		aux = ft_strdup("");
+	linear_map = NULL;
 	while (line != NULL)
 	{
 		linear_map = ft_strjoin(aux, line);
@@ -50,7 +52,24 @@ void	read_map(int fd, t_game *game)
 		map_size++;
 	}
 	game->map.array = ft_split(linear_map, '\n');
+	if(game->map.array == NULL)
+		close_free(game, "Error\nNull map!", 0);
 	game->map.map_size = map_size;
+	if(map_size != game_rows(game))
+	{
+		free(linear_map);
+		close_free(game, "Error\nMap size different from number of rows on file!", 0);
+	}
 	free(linear_map);
 	return;
+}
+
+int	game_rows(t_game *game)
+{
+	int i;
+
+	i = 0;
+	while (game->map.array[i] != NULL)
+		i++;
+	return (i);
 }
