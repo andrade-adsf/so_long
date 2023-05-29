@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:38:56 by feandrad          #+#    #+#             */
-/*   Updated: 2023/01/19 09:02:13 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:49:26 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	check_flag(char flag, va_list arg)
 	else if (flag == 's')
 		return (ft_putstr_fd(va_arg(arg, char *), 1));
 	else if (flag == 'd' || flag == 'i')
-		//return (ft_putstr_fd(ft_itoa(va_arg(arg, int)), 1));
 		return (hold(ft_itoa(va_arg(arg, int))));
 	else if (flag == 'u')
 		return (hold(ft_utoa(va_arg(arg, int))));

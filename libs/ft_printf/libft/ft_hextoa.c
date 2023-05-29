@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 12:13:56 by feandrad          #+#    #+#             */
-/*   Updated: 2023/01/19 01:00:46 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:55:40 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ static int	intlen(unsigned long nb);
 char	*ft_hextoa(unsigned long nbr, int flag)
 {
 	char	*result;
-	int	digits;
+	int		digits;
 	char	*base_str;
 
-	//base_str = (char *)malloc(16 + 1);
 	if (flag == 'x')
 		base_str = BASELOW;
 	else if (flag == 'X')
@@ -37,8 +36,6 @@ char	*ft_hextoa(unsigned long nbr, int flag)
 		result[digits--] = base_str[nbr % 16];
 		nbr /= 16;
 	}
-	
-	//free(base_str);
 	return (result);
 }
 

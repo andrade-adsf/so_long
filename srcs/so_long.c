@@ -6,33 +6,27 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 22:56:00 by feandrad          #+#    #+#             */
-/*   Updated: 2023/05/28 23:02:21 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:35:21 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_game  game;
-    int i;
+	t_game	game;
+	int		i;
 
-    i = 0;
-    ft_bzero(&game, sizeof(t_game));
-    // mem_allocation(&game);
-    // initialize_values(&game);
-    input_validation(argc, argv, &game);
-    map_validation(&game);
-    free_map(&game);
-    reload_map(argv, &game);
-    // ^ não deve ser substituido
-    // v sujeito a refatoração
-    open_window(&game);
-    load_sprites(&game);
-    put_imgs(&game);
-    mlx_hook(game.data.win, 2, 1L << 0, pressed_key, &game);
-    mlx_hook(game.data.win, 17, 1L << 2, close_free, &game);
-    mlx_loop(game.data.mlx);
-    // game_end;
-    // free_map;
+	i = 0;
+	ft_bzero(&game, sizeof(t_game));
+	input_validation(argc, argv, &game);
+	map_validation(&game);
+	free_map(&game);
+	reload_map(argv, &game);
+	open_window(&game);
+	load_sprites(&game);
+	put_imgs(&game);
+	mlx_hook(game.data.win, 2, 1L << 0, pressed_key, &game);
+	mlx_hook(game.data.win, 17, 1L << 2, close_free, &game);
+	mlx_loop(game.data.mlx);
 }

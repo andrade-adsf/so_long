@@ -6,7 +6,7 @@
 /*   By: feandrad <feandrad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 00:00:42 by feandrad          #+#    #+#             */
-/*   Updated: 2023/01/19 01:05:46 by feandrad         ###   ########.fr       */
+/*   Updated: 2023/05/29 02:54:06 by feandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*ft_pointera(unsigned long nbr)
 	else
 	{
 		size = 3 + intlen(nbr);
-		//psign = (char *)malloc(2);
 		result = (char *)ft_calloc(size, 1);
 		psign = "0x";
 		hex = ft_hextoa(nbr, 'x');
